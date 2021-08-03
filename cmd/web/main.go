@@ -6,10 +6,12 @@ import (
 	"github.com/alexedwards/scs/v2"
 	"github.com/hieunguyendinhquoc98/bookings/internal/config"
 	"github.com/hieunguyendinhquoc98/bookings/internal/handlers"
+	"github.com/hieunguyendinhquoc98/bookings/internal/helpers"
 	"github.com/hieunguyendinhquoc98/bookings/internal/models"
 	"github.com/hieunguyendinhquoc98/bookings/internal/render"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -43,6 +45,9 @@ func run() error {
 	// change this to true when in production
 	app.InProduction = false
 
+	app.InfoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	app.ErrorLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+
 	// set up the session
 	session = scs.New()
 	session.Lifetime = 24 * time.Hour
@@ -65,5 +70,6 @@ func run() error {
 	handlers.NewHandlers(repo)
 
 	render.NewTemplates(&app)
+	helpers.NewHelpers(&app)
 	return nil
 }

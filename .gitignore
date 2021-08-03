@@ -1,3 +1,5 @@
 .idea
 .DS_Store
 coverage.out
+bookings
+run.bat
