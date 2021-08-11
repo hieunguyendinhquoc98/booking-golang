@@ -77,12 +77,6 @@ function Prompt() {
                 if (c.didOpen !== undefined) {
                     c.didOpen();
                 }
-            },
-            preConfirm: () => {
-                return [
-                    document.getElementById('start').value,
-                    document.getElementById('end').value,
-                ]
             }
         })
 
@@ -117,10 +111,10 @@ function checkAvailability(roomID) {
                     <div class="col">
                         <div class="form-row" id="reservation-dates-modal">
                             <div class="col">
-                                <input disabled required class="form-control" type="text" name="start" id="start" placeholder="Arrival">
+                                <input disabled autocomplete="off" required class="form-control" type="text" name="start" id="start" placeholder="Arrival">
                             </div>
                             <div class="col">
-                                <input disabled required class="form-control" type="text" name="end" id="end" placeholder="Departure">
+                                <input disabled autocomplete="off" required class="form-control" type="text" name="end" id="end" placeholder="Departure">
                             </div>
 
                         </div>
